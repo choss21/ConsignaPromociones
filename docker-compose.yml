@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    restart: always
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site:/data/mongodb
+      #- ./data:/data/db
+    ports:
+      - "27027:27017"
+  consignajdcx.api:
+    image: ${DOCKER_REGISTRY-}consignajdcxapi
+    build:
+      context: .
+      dockerfile: ConsignaJDCX.Api/Dockerfile
+    depends_on:
+       - mongodb
+    links:
+       - mongodb
