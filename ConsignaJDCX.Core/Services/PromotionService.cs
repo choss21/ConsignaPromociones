@@ -1,6 +1,6 @@
 ﻿using ConsignaJDCX.Core.Entities;
 using ConsignaJDCX.Core.Interfaces;
-using System;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,15 +8,22 @@ namespace ConsignaJDCX.Core.Services
 {
     public class PromotionService : IPromotionService
     {
-        private readonly IMongoContext _context;
-        public PromotionService(IMongoContext context)
+
+        private readonly IPromotionRepository _repository;
+        public PromotionService(IPromotionRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public Task<IEnumerable<Promotion>> GetPromotions()
+        public async Task<List<Promotion>> GetPromotions()
         {
-            throw new NotImplementedException();
+            return await _repository.GetAll();
+        }
+
+        public async Task<Promotion> CreatePromotion(Promotion promotion)
+        {
+            await _repository.Add(promotion);
+            return promotion;
         }
     }
 }

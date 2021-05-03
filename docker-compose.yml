@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   mongodb:
-    container_name: mongodb
+    container_name: mongodb_jdcx
     image: mongo
     restart: always
     volumes:

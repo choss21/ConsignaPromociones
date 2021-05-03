@@ -6,6 +6,7 @@ namespace ConsignaJDCX.Core.Interfaces
 {
     public interface IPromotionService
     {
-        Task<IEnumerable<Promotion>> GetPromotions();
+        Task<List<Promotion>> GetPromotions();
+        Task<Promotion> CreatePromotion(Promotion promotion);
     }
 }

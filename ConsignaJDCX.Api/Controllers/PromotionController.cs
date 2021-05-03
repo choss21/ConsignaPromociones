@@ -1,4 +1,5 @@
 ﻿using ConsignaJDCX.Core.Entities;
+using ConsignaJDCX.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,6 +16,11 @@ namespace ConsignaJDCX.Api.Controllers
     [ApiController]
     public class PromotionController : ControllerBase
     {
+        private readonly IPromotionService _promotionService;
+        public PromotionController(IPromotionService promotionService)
+        {
+            _promotionService = promotionService;
+        }
         /// <summary>
         /// Obtiene un listado de promociones
         /// </summary>
@@ -22,7 +28,17 @@ namespace ConsignaJDCX.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Promotion>>> GetPromotions()
         {
-            return null;
+            var result = await _promotionService.GetPromotions();
+
+            return result;
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Promotion>> Create([FromBody] Promotion s)
+        {
+            await _promotionService.CreatePromotion(s);
+            return s;
 
         }
     }

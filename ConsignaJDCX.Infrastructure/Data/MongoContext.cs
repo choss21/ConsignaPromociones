@@ -19,22 +19,45 @@ namespace ConsignaJDCX.Infrastructure.Data
         {
             _mongoClient = new MongoClient(configuration.Value.Connection);
             _db = _mongoClient.GetDatabase(configuration.Value.DatabaseName);
+
+
             if (!BsonClassMap.IsClassMapRegistered(typeof(Promotion)))
             {
+                BsonClassMap.RegisterClassMap<BaseEntity>(cm =>
+                {
+                    cm.AutoMap();
+                    cm.MapIdMember(x => x.Id)
+                        .SetSerializer(new NullableSerializer<Guid>(new GuidSerializer(BsonType.String)))
+                        .SetIdGenerator(GuidGenerator.Instance)
+                        ;
+
+                    cm.MapMember(x => x.FechaCreacion)
+                        .SetElementName("FechaCreacion")
+                        .SetIsRequired(true)
+                        .SetSerializer(new DateTimeSerializer(DateTimeKind.Local));
+                    ;
+                    cm.MapMember(x => x.FechaModificacion)
+                        .SetElementName("FechaModificacion")
+                        .SetSerializer(new NullableSerializer<DateTime>(new DateTimeSerializer(DateTimeKind.Local)))
+                    ;
+                    cm.MapMember(c => c.Activo).SetElementName("Ativo");
+
+
+                });
                 BsonClassMap.RegisterClassMap<Promotion>(cm =>
                 {
                     cm.AutoMap();
-                    // cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
-                    cm.MapIdMember(x => x.Id)
-                        .SetSerializer(new NullableSerializer<Guid>(new GuidSerializer(BsonType.String)))
-                        //.SetSerializer(new  GuidSerializer(BsonType.String))
-                        .SetIdGenerator(GuidGenerator.Instance)
-                        ;
-                    //cm.MapMember(c => c.SupplementName).SetElementName("Name");
-                    //cm.MapMember(c => c.Price).SetElementName("Price");
-                    //cm.MapMember(c => c.Size).SetElementName("Size");
-                    //cm.MapMember(c => c.Type).SetElementName("Type");
-                    //cm.MapMember(c => c.Brand).SetElementName("Brand");
+                    cm.MapMember(c => c.FechaInicio)
+                        .SetIsRequired(true)
+                        .SetElementName("FechaInicio");
+                    cm.MapMember(c => c.FechaFin)
+                        .SetIsRequired(true)
+                        .SetElementName("FechaFin");
+
+
+
+
+
 
                 });
             }

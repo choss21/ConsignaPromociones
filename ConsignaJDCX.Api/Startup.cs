@@ -1,6 +1,7 @@
 using ConsignaJDCX.Core.Interfaces;
 using ConsignaJDCX.Core.Services;
 using ConsignaJDCX.Infrastructure.Data;
+using ConsignaJDCX.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,11 +31,12 @@ namespace ConsignaJDCX.Api
 
             services.Configure<Mongosettings>(options =>
             {
-                options.Connection = Configuration.GetConnectionString("SupplementDB");
+                options.Connection = Configuration.GetConnectionString("ConsignaDB");
                 options.DatabaseName = Configuration.GetSection("ConnectionStrings:DatabaseName").Value;
             });
             services.AddScoped<IMongoContext, MongoContext>();
-
+            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IPromotionRepository, PromotionRepository>();
 
             services.AddScoped<IPromotionService, PromotionService>();
 
