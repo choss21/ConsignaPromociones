@@ -11,7 +11,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
-
+using AutoMapper;
 namespace ConsignaJDCX.Api
 {
     public class Startup
@@ -26,6 +26,8 @@ namespace ConsignaJDCX.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers();
 

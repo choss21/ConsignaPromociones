@@ -1,5 +1,6 @@
 ﻿using ConsignaJDCX.Core.Entities;
 using ConsignaJDCX.Core.Interfaces;
+using ConsignaJDCX.Core.Rules;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace ConsignaJDCX.Core.Services
 
         public async Task<Promotion> CreatePromotion(Promotion promotion)
         {
+            BusinesValidators.ThrowIfNotValid(promotion, BusinesValidators.rulesPromotions);
             await _repository.Add(promotion);
             return promotion;
         }
