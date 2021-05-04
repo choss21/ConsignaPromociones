@@ -1,4 +1,5 @@
 ﻿using ConsignaJDCX.Core.Entities;
+using ConsignaJDCX.Core.Exceptions;
 using ConsignaJDCX.Core.Interfaces;
 using MongoDB.Driver;
 using System;
@@ -20,7 +21,7 @@ namespace ConsignaJDCX.Infrastructure.Repositories
 
         public async Task<List<T>> GetAll()
         {
-            var result = await _entities.Find(s => true).ToListAsync();
+            var result = await _entities.Find(s => s.Activo == true).ToListAsync();
             return result;
         }
 
@@ -39,18 +40,36 @@ namespace ConsignaJDCX.Infrastructure.Repositories
             await _entities.InsertOneAsync(entity);
         }
 
-        public async void Update(T entity)
+        public async Task Update(Guid id, T entity)
         {
             if (entity is BaseEntity be)
             {
                 be.FechaModificacion = DateTime.Now;
+                if (be.Activo == null)
+                    be.Activo = true;
+                if (be.Id == null)
+                    be.Id = id;
             }
-            await _entities.ReplaceOneAsync(su => su.Id == entity.Id, entity);
+            await _entities.ReplaceOneAsync(su => su.Id == id, entity);
         }
 
         public async Task Delete(Guid id)
         {
-            await _entities.DeleteOneAsync(su => su.Id == id);
+            var entitySearch = await GetById(id);
+            if (entitySearch == null)
+                throw new ServiceException("No se encontrol Promocion para eliminar");
+            if (entitySearch != null && entitySearch is BaseEntity be)
+            {
+                if (be.Activo == false)
+                    throw new ServiceException("La promocion proporcionada ya se encuentra eliminada");
+                be.Activo = false;
+                await Update(id, be as T);
+            }
+            else
+            {
+                await _entities.DeleteOneAsync(su => su.Id == id);
+            }
+
         }
     }
 }

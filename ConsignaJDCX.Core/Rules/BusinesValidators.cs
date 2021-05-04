@@ -12,6 +12,9 @@ namespace ConsignaJDCX.Core.Rules
             new ValidationItem<Promotion>((x)=>x.FechaInicio != null,"La fecha de inicio es requerida"),
             new ValidationItem<Promotion>((x)=>x.FechaFin != null,"La fecha fin de promocion es requerida"),
             new ValidationItem<Promotion>((x)=> x.FechaInicio != null && x.FechaFin != null && x.FechaFin >= x.FechaInicio,"La fecha Fin tiene que ser mayor o igual a la fecha de inicio"),
+            new ValidationItem<Promotion>((x)=> x.MediosDePago != null ,"Medios de pago no puede ser null"),
+            new ValidationItem<Promotion>((x)=> x.Bancos != null ,"bancos no puede ser null"),
+            new ValidationItem<Promotion>((x)=> x.CategoriasProductos != null ,"Categoria de productos no puede ser null"),
             //La promoción puede tener porcentaje de descuento o cuotas. NO ambas
             new ValidationItem<Promotion>((x)=>{
                 if(x.PorcentajeDeDescuento== null)
@@ -77,6 +80,30 @@ namespace ConsignaJDCX.Core.Rules
                 }
                 return true;
             },"El Porcentaje descuento en caso de tener valor, debe estar comprendido entre 5 y 80"),
+            new ValidationItem<Promotion>((x) =>
+            {
+                if (x.MediosDePago.All(x => Promotion.MedioPagoRequiredBanco(x)))
+                {
+                    //se requiere proporcionar banco
+                    if(x.Bancos == null || x.Bancos.Count() <= 0)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            },"Se esta proporcionando un Medio de Pago que requiere que se especifique el Banco. Los bancos disponibles son " + string.Join(", ", Promotion.BancosDisponibles)),
+            new ValidationItem<Promotion>((x) =>
+            {
+                if (x.MediosDePago.All(x => !Promotion.MedioPagoRequiredBanco(x)))
+                {
+                    //NO se requiere proporcionar banco
+                    if(x.Bancos != null && x.Bancos.Count() > 0)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            },"Se esta proporcionando un Medio de Pago que NO requiere que se especifique el Banco. Favor de no mandar informacion de los bancos"),
         };
 
 

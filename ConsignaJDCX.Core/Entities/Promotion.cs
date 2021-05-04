@@ -14,15 +14,16 @@ namespace ConsignaJDCX.Core.Entities
         public decimal? PorcentajeDeDescuento { get; set; }
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
-
+        public const string MedioPagoEFECTIVO = "EFECTIVO";
+        public const string MedioPagoGIFTCARD = "GIFT_CARD";
         public static IEnumerable<string> MediosDePagoDisponibles
         {
             get
             {
                 yield return "TARJETA_CREDITO";
                 yield return "TARJETA_DEBITO";
-                yield return "EFECTIVO";
-                yield return "GIFT_CARD";
+                yield return MedioPagoEFECTIVO;
+                yield return MedioPagoGIFTCARD;
             }
         }
         public static IEnumerable<string> BancosDisponibles
@@ -52,8 +53,14 @@ namespace ConsignaJDCX.Core.Entities
                 yield return "Audio";
             }
         }
-
+        public static bool MedioPagoRequiredBanco(string medioPago)
+        {
+            if (medioPago == MedioPagoEFECTIVO || medioPago == MedioPagoGIFTCARD)
+                return false;
+            else
+                return true;
+        }
     }
 
-   
+
 }

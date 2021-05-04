@@ -12,6 +12,11 @@ namespace ConsignaJDCX.Infrastructure.Mappings
                 .Include<PromotionDTO, Promotion>();
             CreateMap<PromotionDTO, Promotion>();
 
+            CreateMap<BaseEntity, BaseEntityDTO>()
+                .Include<Promotion, PromotionDTO>();
+            CreateMap<Promotion, PromotionDTO>();
+
         }
+
     }
 }
