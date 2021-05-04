@@ -31,6 +31,45 @@ namespace ConsignaJDCX.Core.Services
         {
             return await _repository.GetAvailablePromotions(date);
         }
+        public async Task<List<Promotion>> GetAvailablePromotionsbySale(string mediopago, string banco, string categoriaproducto)
+        {
+            if (!Promotion.MediosDePagoDisponibles.Contains(mediopago))
+            {
+                throw new ServiceException($"El medio de pago {mediopago} no es valido");
+            }
+            if (!Promotion.CategoriaProductosDisponibles.Contains(categoriaproducto))
+            {
+                throw new ServiceException($"la categoria de producto {categoriaproducto} no es valido");
+            }
+            if (!string.IsNullOrEmpty(banco))
+            {
+                if (!Promotion.BancosDisponibles.Contains(banco))
+                {
+                    throw new ServiceException($"El banco {banco} no es valido");
+                }
+            }
+            var promotionsAvailables = await _repository.GetAvailablePromotions(DateTime.Now);
+            var result = new List<Promotion>();
+            foreach (var pa in promotionsAvailables)
+            {
+                if (pa.MediosDePago.Any(x => x == mediopago)
+                    && pa.CategoriasProductos.Any(x => x == categoriaproducto))
+                {
+                    if (string.IsNullOrEmpty(banco))
+                    {
+                        result.Add(pa);
+                    }
+                    else
+                    {
+                        if (pa.Bancos.Any(x => x == banco))
+                        {
+                            result.Add(pa);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
         public async Task<Promotion> CreatePromotion(Promotion promotion)
         {
             if (promotion == null)

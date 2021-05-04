@@ -106,7 +106,47 @@ namespace ConsignaJDCX.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Ver listado de promociones vigentes para una venta
+        /// </summary>
+        /// <param name="mediopago"></param>
+        /// <param name="categoriaproducto"></param>
+        /// <param name="banco"></param>
+        /// <returns></returns>
+        [HttpGet("availables/{mediopago}/{categoriaproducto}/{banco}")]
+        public async Task<ActionResult<List<PromotionDTO>>> GetAvailablePromotionsBySale(string mediopago, string categoriaproducto, string banco)
+        {
+            try
+            {
+                var result = await _promotionService.GetAvailablePromotionsbySale(mediopago, banco, categoriaproducto);
+                var dtos = _mapper.Map<List<PromotionDTO>>(result);
+                return dtos;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
+        }
+        /// <summary>
+        /// Ver listado de promociones vigentes para una venta
+        /// </summary>
+        /// <param name="mediopago"></param>
+        /// <param name="categoriaproducto"></param>
+        /// <returns></returns>
+        [HttpGet("availables/{mediopago}/{categoriaproducto}")]
+        public async Task<ActionResult<List<PromotionDTO>>> GetAvailablePromotionsBySale(string mediopago, string categoriaproducto)
+        {
+            try
+            {
+                return await this.GetAvailablePromotionsBySale(mediopago, categoriaproducto, null);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
 
         /// <summary>
         /// Para crear una Promocion
