@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsignaJDCX.Api", "ConsignaJDCX.Api\ConsignaJDCX.Api.csproj", "{7192E0D0-7049-4774-B032-BB961ED62BF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsignaJDCX.Api", "ConsignaJDCX.Api\ConsignaJDCX.Api.csproj", "{7192E0D0-7049-4774-B032-BB961ED62BF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsignaJDCX.Core", "ConsignaJDCX.Core\ConsignaJDCX.Core.csproj", "{A1020587-4B5B-4290-8C41-C0D33637C366}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsignaJDCX.Core", "ConsignaJDCX.Core\ConsignaJDCX.Core.csproj", "{A1020587-4B5B-4290-8C41-C0D33637C366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsignaJDCX.Infrastructure", "ConsignaJDCX.Infrastructure\ConsignaJDCX.Infrastructure.csproj", "{2028E78D-3820-4D49-A789-3696C5F5615A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsignaJDCX.Infrastructure", "ConsignaJDCX.Infrastructure\ConsignaJDCX.Infrastructure.csproj", "{2028E78D-3820-4D49-A789-3696C5F5615A}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9D77DF60-B8C0-49DD-B6E4-203BB059D409}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{72693229-61C6-4F85-92C9-9F73E154268F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsignaJDCX.Tests", "ConsignaJDCX.Tests\ConsignaJDCX.Tests.csproj", "{590CF088-A83D-4B3B-A8CC-397936F4AECF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{9D77DF60-B8C0-49DD-B6E4-203BB059D409}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D77DF60-B8C0-49DD-B6E4-203BB059D409}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D77DF60-B8C0-49DD-B6E4-203BB059D409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{590CF088-A83D-4B3B-A8CC-397936F4AECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{590CF088-A83D-4B3B-A8CC-397936F4AECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{590CF088-A83D-4B3B-A8CC-397936F4AECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{590CF088-A83D-4B3B-A8CC-397936F4AECF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{590CF088-A83D-4B3B-A8CC-397936F4AECF} = {72693229-61C6-4F85-92C9-9F73E154268F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20911819-42F4-42A5-A426-FBBB276919F9}
