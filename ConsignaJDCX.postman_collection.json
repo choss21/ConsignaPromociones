@@ -1,0 +1,211 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ConsignaJDCX",
+		"_postman_id": "b8fe458a-d337-a649-49d2-414e97730c49",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Guardar Promocion",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entity\": {\r\n     \"MediosDePago\": [\r\n          \"TARJETA_DEBITO\"\r\n      ],\r\n  \"Bancos\": [\r\n\t\t\"Galicia\"\r\n  ],\r\n  \"CategoriasProductos\": [],\r\n  \"porcentajeDeDescuento\": 50,\r\n  \"fechaInicio\": \"2021-05-01\",\r\n  \"fechaFin\": \"2021-05-30\"\r\n   }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ver una promoción",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion/3184d86d-29d5-4a3e-ac1a-9605bc4be281",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entity\": {\r\n     \"MediosDePago\": [\r\n          \"TARJETA_DEBITO\"\r\n      ],\r\n  \"Bancos\": [\r\n\t\t\"Galicia\"\r\n  ],\r\n  \"CategoriasProductos\": [],\r\n  \"porcentajeDeDescuento\": 50,\r\n  \"fechaInicio\": \"2021-05-01\",\r\n  \"fechaFin\": \"2021-05-30\"\r\n   }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ver listado de promociones",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entity\": {\r\n     \"MediosDePago\": [\r\n          \"TARJETA_DEBITO\"\r\n      ],\r\n  \"Bancos\": [\r\n\t\t\"Galicia\"\r\n  ],\r\n  \"CategoriasProductos\": [],\r\n  \"porcentajeDeDescuento\": 50,\r\n  \"fechaInicio\": \"2021-05-01\",\r\n  \"fechaFin\": \"2021-05-30\"\r\n   }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar una promoción",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entityId\": \"3184d86d-29d5-4a3e-ac1a-9605bc4be281\",\r\n  \"entity\": {\r\n    \"mediosDePago\": [\r\n      \"EFECTIVO\",\"TARJETA_CREDITO\",\"TARJETA_DEBITO\"\r\n    ],\r\n    \"bancos\": [\"Galicia\"],\r\n    \"categoriasProductos\": [\"Hogar\",\"Jardin\" ],\r\n    \"porcentajeDeDescuento\": 30,\r\n    \"fechaInicio\": \"2021-05-01\",\r\n    \"fechaFin\": \"2021-05-27\"\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar vigencia de promoción",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion/validity",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entityId\": \"3184d86d-29d5-4a3e-ac1a-9605bc4be281\",\r\n  \"entity\": {\r\n    \"fechaInicio\": \"2021-05-01\",\r\n    \"fechaFin\": \"2021-05-27\"\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ver listado de promociones vigentes",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion/availables/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entity\": {\r\n     \"MediosDePago\": [\r\n          \"TARJETA_DEBITO\"\r\n      ],\r\n  \"Bancos\": [\r\n\t\t\"Galicia\"\r\n  ],\r\n  \"CategoriasProductos\": [],\r\n  \"porcentajeDeDescuento\": 50,\r\n  \"fechaInicio\": \"2021-05-01\",\r\n  \"fechaFin\": \"2021-05-30\"\r\n   }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ver listado de promociones vigentes para una fecha x",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion/availables/2021-05-04",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entity\": {\r\n     \"MediosDePago\": [\r\n          \"TARJETA_DEBITO\"\r\n      ],\r\n  \"Bancos\": [\r\n\t\t\"Galicia\"\r\n  ],\r\n  \"CategoriasProductos\": [],\r\n  \"porcentajeDeDescuento\": 50,\r\n  \"fechaInicio\": \"2021-05-01\",\r\n  \"fechaFin\": \"2021-05-30\"\r\n   }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ver listado de promociones vigentes para una venta",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion/availables/TARJETA_DEBITO/Hogar",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entity\": {\r\n     \"MediosDePago\": [\r\n          \"TARJETA_DEBITO\"\r\n      ],\r\n  \"Bancos\": [\r\n\t\t\"Galicia\"\r\n  ],\r\n  \"CategoriasProductos\": [],\r\n  \"porcentajeDeDescuento\": 50,\r\n  \"fechaInicio\": \"2021-05-01\",\r\n  \"fechaFin\": \"2021-05-30\"\r\n   }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ver listado de promociones vigentes para una venta incluye banco",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion/availables/TARJETA_DEBITO/Hogar/Galicia",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entity\": {\r\n     \"MediosDePago\": [\r\n          \"TARJETA_DEBITO\"\r\n      ],\r\n  \"Bancos\": [\r\n\t\t\"Galicia\"\r\n  ],\r\n  \"CategoriasProductos\": [],\r\n  \"porcentajeDeDescuento\": 50,\r\n  \"fechaInicio\": \"2021-05-01\",\r\n  \"fechaFin\": \"2021-05-30\"\r\n   }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Promocion",
+			"request": {
+				"url": "https://localhost:54441/api/Promotion/3184d86d-29d5-4a3e-ac1a-9605bc4be281",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entity\": {\r\n     \"MediosDePago\": [\r\n          \"TARJETA_DEBITO\"\r\n      ],\r\n  \"Bancos\": [\r\n\t\t\"Galicia\"\r\n  ],\r\n  \"CategoriasProductos\": [],\r\n  \"porcentajeDeDescuento\": 50,\r\n  \"fechaInicio\": \"2021-05-01\",\r\n  \"fechaFin\": \"2021-05-30\"\r\n   }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

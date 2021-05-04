@@ -154,7 +154,7 @@ namespace ConsignaJDCX.Api.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<PromotionDTO>> Create([FromBody] SaveRequest<PromotionDTO> request)
+        public async Task<ActionResult<Guid>> Create([FromBody] SaveRequest<PromotionDTO> request)
         {
             try
             {
@@ -165,8 +165,8 @@ namespace ConsignaJDCX.Api.Controllers
 
                 var p = _mapper.Map<Promotion>(request.Entity);
                 await _promotionService.CreatePromotion(p);
-                var dto = _mapper.Map<PromotionDTO>(p);
-                return dto;
+
+                return p.Id;
             }
             catch (Exception ex)
             {
